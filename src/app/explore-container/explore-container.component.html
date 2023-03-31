@@ -1,0 +1,13 @@
+<div id="container">
+  <strong>{{ name }}</strong>
+</div>
+<ion-list>
+  <ion-item *ngIf="alertMessage?.showAlert">
+    <ion-label>{{alertMessage?.alertMessage}}</ion-label>
+    <ion-badge>1</ion-badge>
+  </ion-item>
+  <ion-item *ngIf="alertMessage?.showError">
+    <ion-label>{{alertMessage?.alertMessage}}</ion-label>
+    <ion-badge>1</ion-badge>
+  </ion-item>
+</ion-list>

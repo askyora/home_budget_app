@@ -1,0 +1,8 @@
+{
+  "name": "home_budget_app",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

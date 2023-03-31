@@ -1,0 +1,114 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Upload
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true" [scrollTop]="true">
+ 
+  <ion-card *ngIf="progress">
+    <ion-label size="large" color="secondary" class="ion-padding"><ion-spinner name="crescent"></ion-spinner> Loading.. [{{file?.name}}]</ion-label>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Upload a file</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-input  type="file" accept="image/png,image/jpg,image/jpeg" (change)="onChange($event)"></ion-input>
+      <ion-button (click)="onUpload()">Go</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <app-explore-container ></app-explore-container>
+
+<ion-grid *ngIf="receipt?.receiptLines">
+  <ion-row>
+    <ion-col size="3"><ion-img [src]="url"></ion-img></ion-col>
+    <ion-col size="9" *ngIf="receipt?.text">
+      <ion-textarea  [(ngModel)]="textResponse" name="textResponse" autocomplete="on" autocorrect="on" rows="10"></ion-textarea> 
+       <ion-item-divider></ion-item-divider>
+       <ion-button (click)="onResend()">Resubmit</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-grid *ngIf="receipt?.image">
+  <ion-row>
+    <ion-col size="2"><ion-img class="card-img-top" [src]="receipt?.image" height="20%" width="20%"/></ion-col> 
+    <ion-col size="10"><p class="card-text">Provider : {{receipt?.provider}}</p></ion-col>
+  </ion-row>
+</ion-grid>
+
+  <ion-card *ngIf="receipt?.receiptLines">
+    <ion-card-header>
+      <ion-card-title>Receipt Lines</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row color="primary">
+          <ion-col>
+            #
+          </ion-col>
+          <ion-col>
+            Description
+          </ion-col>
+          <ion-col>
+            Item code
+          </ion-col>
+          <ion-col>
+            Quantity
+          </ion-col>
+          <ion-col>
+            Rate
+          </ion-col>
+          <ion-col>
+            Gross Price
+          </ion-col>
+          <ion-col>
+            Discount
+          </ion-col>
+          <ion-col>
+            Net Amount
+          </ion-col>
+          <ion-col>
+            Action
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let line of receipt?.receiptLines" class="{{line.validationError?'row-custom-bg-red':'row-custom-bg-green'}}">
+          <ion-col>{{ line.index }}</ion-col>
+          <ion-col>{{ line.description }}</ion-col>
+          <ion-col>{{ line.itemCode }}</ion-col>
+          <ion-col>{{ line.quantity }}</ion-col>
+          <ion-col>{{ line.rate }}</ion-col>
+          <ion-col>{{ line.grossPrice }}</ion-col>
+          <ion-col>{{ line.discount }}</ion-col>
+          <ion-col>{{ line.netAmount }}</ion-col>
+          <ion-col><ion-button (click)="onSelect(line)">Save</ion-button></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="receipt?.fields">
+    <ion-card-title>Field Values</ion-card-title>
+    <ion-card-content>
+      <ion-grid>
+                <ion-row>
+                  <ion-col>Field Name</ion-col>
+                  <ion-col>Value</ion-col>
+                </ion-row>
+                <ion-row *ngFor="let entry of receipt?.fields | keyvalue">
+                  <ion-col>{{ entry.key }}</ion-col>
+                  <ion-col>{{ entry.value }}</ion-col>
+                </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

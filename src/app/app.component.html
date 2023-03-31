@@ -1,0 +1,15 @@
+<ion-app>
+  <ion-router-outlet ></ion-router-outlet>
+
+  <ion-list>
+    <ion-item *ngIf="alertMessage?.showAlert">
+      <ion-label>{{alertMessage?.alertMessage}}</ion-label>
+      <ion-badge>1</ion-badge>
+    </ion-item>
+    <ion-item *ngIf="alertMessage?.showError">
+      <ion-label>{{alertMessage?.alertMessage}}</ion-label>
+      <ion-badge>1</ion-badge>
+    </ion-item>
+  </ion-list>
+  
+</ion-app>
