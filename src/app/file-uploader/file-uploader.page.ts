@@ -3,6 +3,8 @@ import { FileUploadService } from '../services/file-upload.service';
 import { ReceiptResponse } from '../dto/receipt-response';
 import { ReceiptLine } from '../dto/receipt-line';
 import { NavController } from '@ionic/angular';
+import { ProblemDetail } from '../dto/error/problem-detail';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'file-uploader',
@@ -10,6 +12,7 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['file-uploader.page.scss'],
 })
 export class FileUploaderPage {
+  public msg?: ProblemDetail;
   public url?: string;
   public file?: File = undefined;
   public receipt?: ReceiptResponse;
@@ -19,7 +22,7 @@ export class FileUploaderPage {
 
   constructor(
     private fileUploadService: FileUploadService,
-    public navCtrl: NavController
+    public navCtrl: NavController,public api: ApiService
   ) {}
 
   onSelect(line: ReceiptLine): void {
@@ -43,6 +46,34 @@ export class FileUploaderPage {
         this.progress = false;
         this.selectedLine = undefined;
       });
+    }
+  }
+
+  clear() {
+    this.msg = undefined;
+  }
+
+  save() {
+    if (this.receipt != null || this.receipt != undefined) {
+      this.progress = true;
+      this.msg = undefined;
+      this.api.saveReceipt(this.receipt).subscribe(
+        (res) => {
+          if (res.status == 201) {
+            let r = res.body;
+            this.msg = {
+              message: 'Receipt successfully saved.',
+              title: 'Save Action',
+              success: 'true',
+            } as ProblemDetail;
+          }
+          this.progress = false;
+        },
+        (err) => {
+          this.msg = JSON.parse(JSON.stringify(err));
+          this.progress = false;
+        }
+      );
     }
   }
 

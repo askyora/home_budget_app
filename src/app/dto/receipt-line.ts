@@ -8,5 +8,5 @@ export interface ReceiptLine{
     discount: number;
     netAmount: number;
     validationError:boolean;
-    fields:Map<string,string>
+    fields:Map<string,string>;
 }

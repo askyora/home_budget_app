@@ -5,6 +5,7 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ngssl",
+    "resources": "cordova-res ios && cordova-res android && node scripts/resources.js",
     "start": "ionic serve --ssl true --host 0.0.0.0 --disable-host-check --ssl-key ./ssl/yora-ms.key  --ssl-cert ./ssl/yora-ms.crt",
     "build": "ionic build",
     "watch": "ionic build --watch --configuration development",
@@ -29,6 +30,7 @@
     "@capacitor/preferences": "^4.0.2",
     "@capacitor/status-bar": "4.1.1",
     "@ionic/angular": "^6.1.9",
+    "android": "^0.0.8",
     "ionicons": "^6.0.3",
     "ngx-webcam": "^0.4.1",
     "rxjs": "~7.5.0",
@@ -52,6 +54,7 @@
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "5.3.0",
     "@typescript-eslint/parser": "5.3.0",
+    "cordova-res": "^0.15.4",
     "eslint": "^7.6.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsdoc": "30.7.6",

@@ -1,14 +1,11 @@
 import { Component} from '@angular/core';
-import { DecimalPipe, NgFor, NgIf } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { WebcamModule } from 'ngx-webcam';
 import { FileUploadService } from '../services/file-upload.service';
 import { ReceiptResponse } from '../dto/receipt-response';
-import { CommonModule } from '@angular/common';
-import { IonicModule, NavController } from '@ionic/angular';
-import { ExploreContainerComponentModule } from "../explore-container/explore-container.module";
+import { NavController } from '@ionic/angular';
 import { ReceiptLine } from '../dto/receipt-line';
 import { PhotoService } from '../services/photo.service';
+import { ProblemDetail } from '../dto/error/problem-detail';
+import { ApiService } from '../services/api.service';
 
 @Component({
     selector: 'snapshot',
@@ -16,7 +13,7 @@ import { PhotoService } from '../services/photo.service';
     styleUrls: ['snapshot.page.scss']
 })
 export class SnapshotPage {
-
+  public msg?: ProblemDetail;
   public url?: string;
   public receipt?: ReceiptResponse;
   public progress = false;
@@ -25,7 +22,7 @@ export class SnapshotPage {
 
   constructor(
     private fileUploadService: FileUploadService,
-    public navCtrl: NavController,public photoService:PhotoService
+    public navCtrl: NavController,public photoService:PhotoService, public api: ApiService
   ) {}
 
   addPhotoToGallery() {
@@ -40,6 +37,34 @@ export class SnapshotPage {
     this.url = url;
   }
 
+  clear() {
+    this.msg = undefined;
+  }
+
+  save() {
+    if (this.receipt != null || this.receipt != undefined) {
+      this.progress = true;
+      this.msg = undefined;
+      this.api.saveReceipt(this.receipt).subscribe(
+        (res) => {
+          if (res.status == 201) {
+            let r = res.body;
+            this.msg = {
+              message: 'Receipt successfully saved.',
+              title: 'Save Action',
+              success: 'true',
+            } as ProblemDetail;
+          }
+          this.progress = false;
+        },
+        (err) => {
+          this.msg = JSON.parse(JSON.stringify(err));
+          this.progress = false;
+        }
+      );
+    }
+  }
+  
   onResend() {
     if (this.textResponse != undefined) {
       this.progress = true;

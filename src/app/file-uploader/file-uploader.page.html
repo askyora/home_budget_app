@@ -1,9 +1,28 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Upload
-    </ion-title>
-  </ion-toolbar>
+    <ion-buttons slot="secondary">
+      <ion-chip *ngIf="msg?.error?.title">
+        <ion-label color="danger">{{msg?.error?.title}} | {{msg?.error?.detail}}</ion-label>
+        <ion-icon name="close-circle" (click)="clear();"></ion-icon>
+      </ion-chip>
+      <ion-chip *ngIf="msg?.success">
+        <ion-label color="success">{{msg?.title}} | {{msg?.message}}</ion-label>
+        <ion-icon name="close-circle" (click)="clear();"></ion-icon>
+      </ion-chip>
+      <ion-button>
+        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Upload</ion-title>
+  </ion-toolbar >
 </ion-header>
 
 
@@ -76,9 +95,7 @@
           <ion-col>
             Net Amount
           </ion-col>
-          <ion-col>
-            Action
-          </ion-col>
+         
         </ion-row>
 
         <ion-row *ngFor="let line of receipt?.receiptLines" class="{{line.validationError?'row-custom-bg-red':'row-custom-bg-green'}}">
@@ -90,9 +107,16 @@
           <ion-col>{{ line.grossPrice }}</ion-col>
           <ion-col>{{ line.discount }}</ion-col>
           <ion-col>{{ line.netAmount }}</ion-col>
-          <ion-col><ion-button (click)="onSelect(line)">Save</ion-button></ion-col>
         </ion-row>
       </ion-grid>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2"><ion-button [disabled]="receipt?.lineErrors"  (click)="save();">Save</ion-button></ion-col> 
+          <ion-col size="10"></ion-col>
+        </ion-row>
+      </ion-grid>
+      
     </ion-card-content>
   </ion-card>
 

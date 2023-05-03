@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { FileUploadService } from '../services/file-upload.service';
-import { IonicModule } from '@ionic/angular';
+import { ConstantsService } from '../services/constants.service';
 
 @Component({
   selector: 'settings',
@@ -8,6 +7,6 @@ import { IonicModule } from '@ionic/angular';
   styleUrls: ['settings.page.scss']
 })
 export class SettingsPage {
-  constructor(public fileUploadService: FileUploadService) {
+  constructor(public constants: ConstantsService) {
   }
 }

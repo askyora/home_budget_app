@@ -21,13 +21,22 @@
     <ion-card-content>
       <ion-list>
         <ion-item>
+          <ion-label color="medium">Api Gateway Host</ion-label>
+         <ion-input  [(ngModel)]="constants.gatewayHost"></ion-input>
+        </ion-item>
+        <ion-item>
           <ion-label color="medium">Image to Text URI</ion-label>
-         <ion-input  [(ngModel)]="fileUploadService.baseImageApiUrl"></ion-input>
+         <ion-input  [(ngModel)]="constants.imageToObjPath"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label color="medium" >Text to Object URI</ion-label>
-          <ion-input  [(ngModel)]="fileUploadService.baseTxtApiUrl"></ion-input>
+          <ion-input  [(ngModel)]="constants.textToObjPath"></ion-input>
         </ion-item>
+        <ion-item>
+          <ion-label color="medium" >API URI</ion-label>
+          <ion-input  [(ngModel)]="constants.apiUrlPath"></ion-input>
+        </ion-item>
+
       </ion-list>
     </ion-card-content>
   </ion-card>
