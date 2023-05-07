@@ -1,12 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Settings
-    </ion-title>
+    <ion-title> Settings </ion-title>
   </ion-toolbar>
 </ion-header>
-
-
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -15,28 +11,45 @@
     </ion-toolbar>
   </ion-header>
   <ion-card>
-    <ion-card-header>
-      Backend URLS
-    </ion-card-header>
+    <ion-card-header> Backend URLS </ion-card-header>
     <ion-card-content>
       <ion-list>
         <ion-item>
-          <ion-label color="medium">Api Gateway Host</ion-label>
-         <ion-input  [(ngModel)]="constants.gatewayHost"></ion-input>
+          <ion-input
+            label="Api Gateway Host"
+            labelPlacement="floating"
+            helperText="Enter a valid host"
+            errorText="Invalid host"
+            [(ngModel)]="constants.gatewayHost"
+          ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label color="medium">Image to Text URI</ion-label>
-         <ion-input  [(ngModel)]="constants.imageToObjPath"></ion-input>
+          <ion-input
+            label="Image to Text URI"
+            labelPlacement="floating"
+            helperText="Enter a valid path"
+            errorText="Invalid path"
+            [(ngModel)]="constants.imageToObjPath"
+          ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label color="medium" >Text to Object URI</ion-label>
-          <ion-input  [(ngModel)]="constants.textToObjPath"></ion-input>
+          <ion-input
+            label="Text to Object URI"
+            labelPlacement="floating"
+            helperText="Enter a valid path"
+            errorText="Invalid path"
+            [(ngModel)]="constants.textToObjPath"
+          ></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label color="medium" >API URI</ion-label>
-          <ion-input  [(ngModel)]="constants.apiUrlPath"></ion-input>
+          <ion-input
+            label="API URI"
+            labelPlacement="floating"
+            helperText="Enter a valid path"
+            errorText="Invalid path"
+            [(ngModel)]="constants.apiUrlPath"
+          ></ion-input>
         </ion-item>
-
       </ion-list>
     </ion-card-content>
   </ion-card>

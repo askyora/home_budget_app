@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Find List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-split-pane contentId="main">
+        <ion-card contentId="main">
+          <ion-datetime-button datetime="startDate"></ion-datetime-button>
+
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime
+                name="startDate"
+                (click)="selectStartDate($event);"
+                showDefaultButtons="true"
+                id="startDate"
+                presentation="date"
+                [value]="startDate"
+              ></ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-card>
+        <ion-card contentId="main">
+          <ion-datetime-button datetime="endDate"></ion-datetime-button>
+
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime
+                id="endDate"
+                name="endDate"
+                [value]="endDate"
+                (click)="selectEndDate($event);"
+                showDefaultButtons="true"
+                presentation="date"
+              ></ion-datetime>
+            </ng-template> </ion-modal
+        ></ion-card>
+      </ion-split-pane>
+    </ion-item>
+    <ion-item><ion-button (click)="go();">Go</ion-button></ion-item>
+
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="auto"><small>#</small></ion-col>
+          <ion-col><small>Time</small></ion-col>
+          <ion-col><small>Product</small></ion-col>
+          <ion-col><small>Name</small></ion-col>
+          <ion-col><small>Unit Price</small></ion-col>
+          <ion-col size="auto"><small>Quantity</small></ion-col>
+          <ion-col><small>Total</small></ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let line of lines" color="dark">
+          <ion-col size="auto"><small>{{line.index}}</small></ion-col>
+          <ion-col
+            ><small
+              >{{line.txTime | date: 'yyyy/MM/dd hh:mm a'}}</small
+            ></ion-col
+          >
+          <ion-col><small>{{line.itemCode}}</small></ion-col>
+          <ion-col><small>{{line.description}}</small></ion-col>
+          <ion-col><small>{{line.rate}}</small></ion-col>
+          <ion-col size="auto"><small>{{line.quantity}}</small></ion-col>
+          <ion-col><small>{{line.netAmount}}</small></ion-col>
+        </ion-row>
+        <ion-row [ariaColSpan]="8" *ngIf="!lines"
+          ><ion-col><small>No Records.</small></ion-col></ion-row
+        >
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>

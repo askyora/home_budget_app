@@ -16,6 +16,10 @@ const routes: Routes = [
         loadChildren: () => import('../snapshot/snapshot.module').then(m => m.Tab2PageModule)
       },
       {
+        path: 'search',
+        loadChildren: () => import('../search/search.module').then(m => m.SearchPageModule)
+      },
+      {
         path: 'settings',
         loadChildren: () => import('../settings/settings.module').then(m => m.Tab3PageModule)
       },
