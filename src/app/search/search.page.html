@@ -7,41 +7,39 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-split-pane contentId="main">
-        <ion-card contentId="main">
-          <ion-datetime-button datetime="startDate"></ion-datetime-button>
+      <ion-card>
+        <ion-datetime-button datetime="startDateTemplate"></ion-datetime-button>
 
-          <ion-modal [keepContentsMounted]="true">
-            <ng-template>
-              <ion-datetime
-                name="startDate"
-                (click)="selectStartDate($event);"
-                showDefaultButtons="true"
-                id="startDate"
-                presentation="date"
-                [value]="startDate"
-              ></ion-datetime>
-            </ng-template>
-          </ion-modal>
-        </ion-card>
-        <ion-card contentId="main">
-          <ion-datetime-button datetime="endDate"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime
+              showDefaultButtons="true"
+              id="startDateTemplate"
+              [value]="startDate"
+              (click)="selectStartDate($event);"
+              showDefaultButtons="true"
+              presentation="date"
+            ></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-card>
+      <ion-card>
+        <ion-datetime-button datetime="endDate"></ion-datetime-button>
 
-          <ion-modal [keepContentsMounted]="true">
-            <ng-template>
-              <ion-datetime
-                id="endDate"
-                name="endDate"
-                [value]="endDate"
-                (click)="selectEndDate($event);"
-                showDefaultButtons="true"
-                presentation="date"
-              ></ion-datetime>
-            </ng-template> </ion-modal
-        ></ion-card>
-      </ion-split-pane>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime
+              id="endDate"
+              name="endDate"
+              [value]="endDate"
+              (click)="selectEndDate($event);"
+              showDefaultButtons="true"
+              presentation="date"
+            ></ion-datetime>
+          </ng-template> </ion-modal
+      ></ion-card>
     </ion-item>
-    <ion-item><ion-button (click)="go();">Go</ion-button></ion-item>
+    <ion-item><ion-button (click)="search();">Search</ion-button></ion-item>
 
     <ion-item>
       <ion-grid>

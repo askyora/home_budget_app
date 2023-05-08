@@ -32,7 +32,7 @@ export class SearchPage implements OnInit {
     }
   }
 
-  go() {
+  search() {
     this.api
       .getReceiptLines(
         this.startDate + 'T00:00:00+05:30',
