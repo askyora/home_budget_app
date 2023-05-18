@@ -1,0 +1,33 @@
+<ion-toolbar>
+  <ion-buttons slot="secondary">
+    <ion-chip *ngIf="displayMessage?.error?.title">
+      <ion-label color="danger"
+        >{{ displayMessage?.error?.title }} |
+        {{ displayMessage?.error?.detail }}</ion-label
+      >
+      <ion-icon name="close-circle" (click)="clear()"></ion-icon>
+    </ion-chip>
+    <ion-chip *ngIf="displayMessage?.success">
+      <ion-label color="success"
+        >{{ displayMessage?.title }} | {{ displayMessage?.message }}</ion-label
+      >
+      <ion-icon name="close-circle" (click)="clear()"></ion-icon>
+    </ion-chip>
+    <ion-button>
+      <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+    </ion-button>
+    <ion-button>
+      <ion-icon slot="icon-only" name="search"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="secondary">
+    <ion-button>
+      <ion-icon
+        slot="icon-only"
+        ios="ellipsis-horizontal"
+        md="ellipsis-vertical"
+      ></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title>Upload</ion-title>
+</ion-toolbar>

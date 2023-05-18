@@ -66,4 +66,3 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
-android/app/release/output-metadata.json
