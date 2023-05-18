@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FileUploadService } from '../services/file-upload.service';
 import { ReceiptResponse } from '../dto/receipt-response';
 import { ReceiptLine } from '../dto/receipt-line';
@@ -22,7 +22,8 @@ export class FileUploaderPage {
 
   constructor(
     private fileUploadService: FileUploadService,
-    public navCtrl: NavController,public api: ApiService
+    public navCtrl: NavController,
+    public api: ApiService
   ) {}
 
   onSelect(line: ReceiptLine): void {
@@ -100,5 +101,4 @@ export class FileUploaderPage {
       }
     );
   }
-
 }

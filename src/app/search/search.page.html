@@ -1,49 +1,57 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Find List</ion-title>
+    <ion-title>Search...</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
     <ion-item>
-      <ion-card>
-        <ion-datetime-button datetime="startDateTemplate"></ion-datetime-button>
+      <ion-datetime-button datetime="startDateTemplate"></ion-datetime-button>
 
-        <ion-modal [keepContentsMounted]="true">
-          <ng-template>
-            <ion-datetime
-              showDefaultButtons="true"
-              id="startDateTemplate"
-              [value]="startDate"
-              (click)="selectStartDate($event);"
-              showDefaultButtons="true"
-              presentation="date"
-            ></ion-datetime>
-          </ng-template>
-        </ion-modal>
-      </ion-card>
-      <ion-card>
-        <ion-datetime-button datetime="endDate"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime
+            showDefaultButtons="true"
+            id="startDateTemplate"
+            [value]="searchDto.startDate"
+            (click)="selectStartDate($event);"
+            showDefaultButtons="true"
+            presentation="date"
+          ></ion-datetime>
+        </ng-template>
+      </ion-modal>
 
-        <ion-modal [keepContentsMounted]="true">
-          <ng-template>
-            <ion-datetime
-              id="endDate"
-              name="endDate"
-              [value]="endDate"
-              (click)="selectEndDate($event);"
-              showDefaultButtons="true"
-              presentation="date"
-            ></ion-datetime>
-          </ng-template> </ion-modal
-      ></ion-card>
+      <ion-datetime-button datetime="endDate"></ion-datetime-button>
+
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime
+            id="endDate"
+            name="endDate"
+            [value]="searchDto.endDate"
+            (click)="selectEndDate($event);"
+            showDefaultButtons="true"
+            presentation="date"
+          ></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Search"
+        placeholder="Enter search text"
+        [(ngModel)]="searchDto.description"
+        (change)="search()"
+        label-placement="floating"
+        fill="outline"
+      ></ion-input>
     </ion-item>
     <ion-item><ion-button (click)="search();">Search</ion-button></ion-item>
 
     <ion-item>
       <ion-grid>
-        <ion-row>
+        <ion-row back>
           <ion-col size="auto"><small>#</small></ion-col>
           <ion-col><small>Time</small></ion-col>
           <ion-col><small>Product</small></ion-col>

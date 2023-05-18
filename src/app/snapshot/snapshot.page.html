@@ -1,34 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="secondary">
-      <ion-chip *ngIf="msg?.error?.title">
-        <ion-label color="danger"
-          >{{msg?.error?.title}} | {{msg?.error?.detail}}</ion-label
-        >
-        <ion-icon name="close-circle" (click)="clear();"></ion-icon>
-      </ion-chip>
-      <ion-chip *ngIf="msg?.success">
-        <ion-label color="success">{{msg?.title}} | {{msg?.message}}</ion-label>
-        <ion-icon name="close-circle" (click)="clear();"></ion-icon>
-      </ion-chip>
-      <ion-button>
-        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
-      </ion-button>
-      <ion-button>
-        <ion-icon slot="icon-only" name="search"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-buttons slot="secondary">
-      <ion-button>
-        <ion-icon
-          slot="icon-only"
-          ios="ellipsis-horizontal"
-          md="ellipsis-vertical"
-        ></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Upload</ion-title>
-  </ion-toolbar>
+  <app-common-toolbox [displayMessage]="msg"></app-common-toolbox>
 </ion-header>
 
 <ion-content [fullscreen]="true" [scrollTop]="true">

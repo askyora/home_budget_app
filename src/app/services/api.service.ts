@@ -4,6 +4,7 @@ import { ConstantsService } from './constants.service';
 import { ReceiptResponse } from '../dto/receipt-response';
 import { Observable } from 'rxjs';
 import { ReceiptLine } from '../dto/receipt-line';
+import { SearchReceiptLine } from '../dto/search-receipt-line';
 
 @Injectable({
   providedIn: 'root',
@@ -30,26 +31,16 @@ export class ApiService {
   }
 
   getReceiptLines(
-    start: string,
-    end: string
+    searchDto: SearchReceiptLine
   ): Observable<HttpResponse<ReceiptLine[]>> {
     let url =
-      this.constants.gatewayHost +
-      this.constants.apiUrlPath +
-      '/search/' +
-      start +
-      '/' +
-      end;
-    return this.http.post<ReceiptLine[]>(
-      url,
-      {},
-      {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        }),
-        observe: 'response',
-      }
-    );
+      this.constants.gatewayHost + this.constants.apiUrlPath + '/search';
+    return this.http.post<ReceiptLine[]>(url, JSON.stringify(searchDto), {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      }),
+      observe: 'response',
+    });
   }
 }

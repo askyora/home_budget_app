@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { SnapshotPage } from './snapshot.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 import { Tab2PageRoutingModule } from './snapshot-routing.module';
+import { CommonViewsModule } from '../common-views/common-views.module';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { Tab2PageRoutingModule } from './snapshot-routing.module';
     FormsModule,
     ExploreContainerComponentModule,
     Tab2PageRoutingModule,
+    CommonViewsModule,
   ],
   declarations: [SnapshotPage],
 })
